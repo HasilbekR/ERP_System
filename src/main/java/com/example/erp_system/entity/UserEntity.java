@@ -5,9 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,7 +20,7 @@ import java.util.List;
 public class UserEntity extends BaseEntity {
     @Column(unique = true,nullable = false)
     private String fullName;
-    private String number;
+    private String phoneNumber;
     @Column(nullable = false)
     private String password;
     @Enumerated(EnumType.STRING)
