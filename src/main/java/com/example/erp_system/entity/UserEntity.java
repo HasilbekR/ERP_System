@@ -6,8 +6,6 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 
@@ -25,6 +23,7 @@ public class UserEntity extends BaseEntity {
     private String password;
     @Enumerated(EnumType.STRING)
     private List<UserRole> roles;
+
 //
 //    @Override
 //    public Collection<? extends GrantedAuthority> getAuthorities() {
