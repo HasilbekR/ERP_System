@@ -1,13 +1,7 @@
 package com.example.erp_system.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.util.List;
 import java.util.Set;
@@ -17,9 +11,12 @@ import java.util.Set;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class GroupEntity extends BaseEntity{
+   @Column(unique = true)
     private String name;
     @OneToMany
+    @JoinColumn(name = "studentId", referencedColumnName = "id")
     private List<UserEntity> students;
     @ManyToOne
     @JoinColumn(name = "mentorId", referencedColumnName = "id")

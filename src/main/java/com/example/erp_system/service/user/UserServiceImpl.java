@@ -4,6 +4,7 @@ import com.example.erp_system.Dto.request.LoginDto;
 import com.example.erp_system.Dto.request.UserRequestDto;
 import com.example.erp_system.Dto.response.JwtResponse;
 import com.example.erp_system.entity.UserEntity;
+import com.example.erp_system.entity.UserRole;
 import com.example.erp_system.exceptions.DataNotFoundException;
 import com.example.erp_system.exceptions.IllegalAccessException;
 import com.example.erp_system.exceptions.UnregisteredUserException;
@@ -12,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -30,7 +32,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public JwtResponse login(LoginDto request) {
-        Optional<UserEntity> user = userRepository.findUserEntityByPhoneNumber(request.getPhoneNumber());
+        Optional<UserEntity> user = userRepository.findUserEntityByNumber(request.getPhoneNumber());
         if(user.isEmpty())
             throw new UnregisteredUserException(
                     String.format("This %s phone number have not registered yet", request.getPhoneNumber())
@@ -40,6 +42,20 @@ public class UserServiceImpl implements UserService{
         return JwtResponse.builder()
                 .accessToken("1234")
                 .build();
+    }
+
+    @Override
+    public List<UserEntity>  getArchivedStudents(Principal principal) {
+        UserEntity userEntity = userRepository.findUserEntityByPhoneNumber(principal.getName()).orElseThrow(
+                () -> new DataNotFoundException("User not found")
+        );
+        List<UserRole> roles = userEntity.getRoles();
+        for (UserRole role : roles){
+            if(role == UserRole.ADMIN){
+                return userRepository.archivedStudents();
+            }
+        }
+        return null;
     }
 
     @Override

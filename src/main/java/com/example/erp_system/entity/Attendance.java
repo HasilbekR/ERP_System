@@ -18,7 +18,6 @@ public class Attendance extends BaseEntity {
     private Boolean isActive;
     private String comment;
 
-
     @OneToOne
     private UserEntity student;
 

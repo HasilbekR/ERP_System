@@ -1,13 +1,9 @@
 package com.example.erp_system.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -16,10 +12,9 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class LessonEntity extends BaseEntity{
     private Integer lessonCount;
-
     @OneToMany
     private List<Attendance> attendances;
-
 }
