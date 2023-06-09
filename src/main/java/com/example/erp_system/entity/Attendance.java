@@ -4,20 +4,22 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import lombok.*;
 
 import java.util.List;
 
 @Entity(name = "attendance")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@Builder
 public class Attendance extends BaseEntity {
     private Boolean isActive;
     private String comment;
 
 
-    @OneToMany
-    @JoinColumn(name = "studentId", referencedColumnName = "id")
-    private List<UserEntity> student;
-
     @OneToOne
-    @JoinColumn(name = "lessonId", referencedColumnName = "id")
-    private LessonEntity lesson;
+    private UserEntity student;
+
 }
