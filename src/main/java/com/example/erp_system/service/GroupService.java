@@ -1,12 +1,9 @@
 package com.example.erp_system.service;
-import com.example.erp_system.Dto.GroupCreateDto;
+import com.example.erp_system.Dto.request.GroupCreateDto;
 import com.example.erp_system.Dto.request.UserRequestDto;
 import com.example.erp_system.entity.GroupEntity;
 import com.example.erp_system.entity.UserEntity;
-import com.example.erp_system.Dto.request.GroupCreateDto;
-import com.example.erp_system.entity.GroupEntity;
 import com.example.erp_system.entity.ModuleEntity;
-import com.example.erp_system.entity.UserEntity;
 import com.example.erp_system.exceptions.DataNotFoundException;
 import com.example.erp_system.exceptions.GroupNotFoundException;
 import com.example.erp_system.repository.GroupRepository;
@@ -18,7 +15,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -71,12 +67,17 @@ public class GroupService  {
         Pageable pageable = PageRequest.of(page,size);
         return groupRepository.findAll(pageable).getContent();
     }
-    public GroupEntity addStudentToGroup(UUID attendanceId ,UserRequestDto newStudent){
-        GroupEntity group = modelMapper.map(newStudent,GroupEntity.class);
-        return groupRepository.addStudentToAttendance(attendanceId, newStudent);
+
+    //UserCreateDto newStudentni UUID student id ga ozgartirganimni sababi
+    //Chunki tayyor user bolib royhatan otgan userga student rolini berib
+    //Id si bilan qoshib qoyadiku biz yengi sozdata qilyab miz ,fikr va takliflar uchun
+    //muraojaat tg kanal
+    public GroupEntity addStudentToGroup(UUID attendanceId ,UUID studentId){
+        GroupEntity group = modelMapper.map(studentId,GroupEntity.class);
+        return groupRepository.addStudentToAttendance(attendanceId, studentId);
     }
 
-    public UserEntity deleteStudentById(UUID attendance, UUID studentId){
+    public GroupEntity deleteStudentById(UUID attendance, UUID studentId){
        return groupRepository.deleteStudentById(attendance, studentId);
     }
 
