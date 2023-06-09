@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import lombok.*;
-
 import java.util.List;
 
 
@@ -18,12 +17,12 @@ import java.util.List;
 public class UserEntity extends BaseEntity {
     @Column(unique = true,nullable = false)
     private String fullName;
-    private String phoneNumber;
+    @Column(unique = true,nullable = false)
+    private String number;
     @Column(nullable = false)
     private String password;
     @Enumerated(EnumType.STRING)
     private List<UserRole> roles;
-
 //
 //    @Override
 //    public Collection<? extends GrantedAuthority> getAuthorities() {
