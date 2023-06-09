@@ -1,4 +1,4 @@
-package com.example.erp_system.Dto;
+package com.example.erp_system.Dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,6 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class LoginDto {
-    private String number;
+    private String phoneNumber;
     private String password;
 }

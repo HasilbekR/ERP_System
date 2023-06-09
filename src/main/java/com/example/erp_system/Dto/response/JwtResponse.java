@@ -1,4 +1,4 @@
-package com.example.erp_system.Dto;
+package com.example.erp_system.Dto.response;
 
 import lombok.*;
 
