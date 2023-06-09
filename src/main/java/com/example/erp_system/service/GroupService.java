@@ -1,8 +1,7 @@
 package com.example.erp_system.service;
 
-import com.example.erp_system.dto.GroupCreateDto;
+import com.example.erp_system.Dto.GroupCreateDto;
 import com.example.erp_system.entity.GroupEntity;
-import com.example.erp_system.entity.UserEntity;
 import com.example.erp_system.exceptions.GroupNotFoundException;
 import com.example.erp_system.repository.GroupRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +16,6 @@ public class GroupService  {
 
     private final GroupRepository groupRepository;
     private final ModelMapper modelMapper;
-
 
 
     public GroupEntity save(GroupCreateDto groupCreateDto) {

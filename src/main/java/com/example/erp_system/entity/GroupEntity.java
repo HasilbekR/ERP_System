@@ -12,7 +12,7 @@ import lombok.Setter;
 import java.util.List;
 import java.util.Set;
 
-@Entity(name = "group")
+@Entity(name = "groups")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -20,7 +20,6 @@ import java.util.Set;
 public class GroupEntity extends BaseEntity{
     private String name;
     @OneToMany
-    @JoinColumn(name = "studentId", referencedColumnName = "id")
     private List<UserEntity> students;
     @ManyToOne
     @JoinColumn(name = "mentorId", referencedColumnName = "id")
