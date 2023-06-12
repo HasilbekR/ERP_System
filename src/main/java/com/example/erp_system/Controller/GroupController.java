@@ -6,6 +6,7 @@ import com.example.erp_system.service.GroupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class GroupController {
     private final GroupService groupService;
 
   @PostMapping("/add")
-  //@PreAuthorize()
+  @PreAuthorize("hasRole(ADMIN)")
   public ResponseEntity<GroupEntity> addGroup(
          @RequestBody GroupCreateDto groupDto
          ){
@@ -28,14 +29,20 @@ public class GroupController {
 
 
   @DeleteMapping("/{groupId}/delete")
-    public ResponseEntity deleteGroup(
+  @PreAuthorize("hasRole(ADMIN)")
+
+  public ResponseEntity deleteGroup(
             @PathVariable UUID groupId
   ){
       groupService.deleteById(groupId);
       return ResponseEntity.status(204).build();
   }
 
+
+
     @PatchMapping("/{groupId}update")
+    @PreAuthorize("hasRole(ADMIN)")
+
     public ResponseEntity<GroupEntity> updateGroup(
             @PathVariable UUID groupId,
             @RequestBody GroupCreateDto groupCreateDto
@@ -44,6 +51,8 @@ public class GroupController {
     }
 
     @GetMapping("/{groupId}getGroup")
+    @PreAuthorize("hasRole(ADMIN)")
+
     public ResponseEntity<GroupEntity> getGroup(
             @PathVariable UUID groupId
     ){
@@ -51,6 +60,8 @@ public class GroupController {
     }
 
     @GetMapping("/getAll")
+    @PreAuthorize("hasRole(ADMIN)")
+
     public ResponseEntity<List<GroupEntity>> getAll(
             @RequestParam(required = false) int page,
             @RequestParam(required = false) int size
@@ -61,6 +72,8 @@ public class GroupController {
 
 
     @GetMapping("/search")
+    @PreAuthorize("hasRole(ADMIN)")
+
     public ResponseEntity<List<GroupEntity>> searchBookByName(
             @RequestParam int page,
             @RequestParam int size,
