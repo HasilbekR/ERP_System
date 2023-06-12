@@ -10,8 +10,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 
@@ -111,4 +109,3 @@ public class UserEntity extends BaseEntity implements UserDetails {
 //    public boolean isEnabled() {
 //        return false;
 //    }
-}

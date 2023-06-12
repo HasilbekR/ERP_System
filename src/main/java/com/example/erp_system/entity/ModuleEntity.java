@@ -5,6 +5,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 @Entity(name = "modules")
 @AllArgsConstructor
@@ -15,5 +16,5 @@ import java.util.Set;
 public class ModuleEntity extends BaseEntity{
     private Integer moduleNumber;
     @OneToMany
-    private Set<LessonEntity> lessons;
+    private List<LessonEntity> lessons;
 }

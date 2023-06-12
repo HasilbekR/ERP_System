@@ -1,9 +1,7 @@
 package com.example.erp_system.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
+
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
@@ -18,7 +16,9 @@ public class Attendance extends BaseEntity {
     private Boolean isActive;
     private String comment;
 
-    @OneToOne
+
+    @ManyToOne
+    @JoinColumn(name = "studentId", referencedColumnName = "id")
     private UserEntity student;
 
-}
+    }
