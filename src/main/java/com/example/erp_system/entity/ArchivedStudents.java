@@ -14,12 +14,9 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
-public class ArchivedStudents {
+public class ArchivedStudents extends BaseEntity {
    @OneToOne
-   @Id
     private UserEntity user;
     private String groupName;
-    @CreationTimestamp
-    private LocalDateTime archivedDate;
 
 }

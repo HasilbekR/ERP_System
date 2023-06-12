@@ -1,11 +1,8 @@
 package com.example.erp_system.Controller;
 
 import com.example.erp_system.Dto.request.GroupCreateDto;
-import com.example.erp_system.Dto.response.JwtResponse;
 import com.example.erp_system.entity.GroupEntity;
-import com.example.erp_system.exceptions.RequestValidationException;
 import com.example.erp_system.service.GroupService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 

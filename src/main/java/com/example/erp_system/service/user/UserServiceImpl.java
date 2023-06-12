@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public JwtResponse login(LoginDto request) {
-        Optional<UserEntity> user = userRepository.findUserEntityByNumber(request.getPhoneNumber());
+        Optional<UserEntity> user = userRepository.findUserEntityByPhoneNumber(request.getPhoneNumber());
         if(user.isEmpty())
             throw new UnregisteredUserException(
                     String.format("This %s phone number have not registered yet", request.getPhoneNumber())
