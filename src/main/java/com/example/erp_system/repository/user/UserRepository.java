@@ -12,9 +12,10 @@ import java.util.UUID;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, UUID> {
 
-    Optional<UserEntity> findUserEntityByPhoneNumber(String phoneNumber);
+    Optional<UserEntity> findUserEntityByNumber(String phoneNumber);
     @Query(value = "select a from archive a order by a.archivedDate asc ")
     List<UserEntity> archivedStudents();
 
+    Optional<UserEntity> findUserEntityByUsername(String username);
 
 }
