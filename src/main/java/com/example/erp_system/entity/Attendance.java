@@ -1,5 +1,6 @@
 package com.example.erp_system.entity;
 
+
 import jakarta.persistence.*;
 import lombok.*;
 

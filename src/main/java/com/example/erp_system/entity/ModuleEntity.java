@@ -7,7 +7,7 @@ import lombok.*;
 
 import java.util.List;
 import java.util.Set;
-@Entity(name = "moduls")
+@Entity(name = "modules")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

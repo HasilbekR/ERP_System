@@ -23,4 +23,3 @@ public class LessonEntity extends BaseEntity{
 @OneToMany
 private List<Attendance> attendance;
 
-}
