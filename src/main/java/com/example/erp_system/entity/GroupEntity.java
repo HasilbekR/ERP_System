@@ -1,5 +1,4 @@
 package com.example.erp_system.entity;
-
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,7 +15,6 @@ public class GroupEntity extends BaseEntity{
    @Column(unique = true)
     private String name;
     @OneToMany
-    @JoinColumn(name = "studentId", referencedColumnName = "id")
     private List<UserEntity> students;
     @ManyToOne
     @JoinColumn(name = "mentorId", referencedColumnName = "id")
