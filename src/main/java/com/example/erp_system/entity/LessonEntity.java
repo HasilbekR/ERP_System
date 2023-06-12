@@ -16,10 +16,11 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class LessonEntity extends BaseEntity{
+public class LessonEntity extends BaseEntity {
     private Integer lessonCount;
-//    @OneToMany
+    //    @OneToMany
 //    private List<UserEntity> students;
-@OneToMany
-private List<Attendance> attendance;
+    @OneToMany
+    private List<Attendance> attendance;
+}
 

@@ -10,6 +10,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -20,10 +22,10 @@ import java.util.List;
 @Setter
 @Builder
 public class UserEntity extends BaseEntity implements UserDetails {
-    @Column(unique = true,nullable = false)
+    @Column(unique = true, nullable = false)
     private String fullName;
-    @Column(unique = true,nullable = false)
-    private String number;
+    @Column(unique = true, nullable = false)
+    private String phoneNumber;
     @Column(nullable = false)
     private String password;
     @Enumerated(EnumType.STRING)
@@ -31,10 +33,10 @@ public class UserEntity extends BaseEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        String ROLE="ROLE_";
-        List<SimpleGrantedAuthority> authorities=new ArrayList<>();
+        String ROLE = "ROLE_";
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         for (UserRole role : roles) {
-            authorities.add(new SimpleGrantedAuthority(ROLE+role.name()));
+            authorities.add(new SimpleGrantedAuthority(ROLE + role.name()));
         }
         return authorities;
     }
@@ -68,6 +70,7 @@ public class UserEntity extends BaseEntity implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+}
 //
 //    @Override
 //    public Collection<? extends GrantedAuthority> getAuthorities() {
