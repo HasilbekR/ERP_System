@@ -50,18 +50,10 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
+
     public JwtResponse login(LoginDto loginDto) {
-//        Optional<UserEntity> user = userRepository.findUserEntityByNumber(request.getPhoneNumber());
-//        if(user.isEmpty())
-//            throw new UnregisteredUserException(
-//                    String.format("This %s phone number have not registered yet", request.getPhoneNumber())
-//            );
-//        else if(!user.get().getPassword().equals(request.getPassword()))
-//            throw new IllegalAccessException("wrong password");
-//        return JwtResponse.builder()
-//                .accessToken("1234")
-//                .build();
-        UserEntity userEntity = userRepository.findUserEntityByNumber(loginDto.getPhoneNumber()).orElseThrow(
+
+        UserEntity userEntity = userRepository.findUserEntityByPhoneNumber(loginDto.getPhoneNumber()).orElseThrow(
                 () -> new DataNotFoundException("User nor found!")
         );
         if(passwordEncoder.matches(loginDto.getPassword(),userEntity.getPassword())){
