@@ -5,6 +5,8 @@ import com.example.erp_system.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import com.example.erp_system.entity.BaseEntity;
+import com.example.erp_system.entity.GroupEntity;
 import org.springframework.data.domain.Pageable;
 
 
@@ -14,14 +16,9 @@ import java.util.UUID;
 @Repository
 public interface GroupRepository extends JpaRepository<GroupEntity , UUID>{
     GroupEntity findGroupEntityById(UUID id);
+  GroupEntity addStudentToAttendance(UUID attendanceId, UserRequestDto newStudent);
 
-
-    @Query(value = "INSERT INTO groups_students(groupsId, studentsId) " +
-            "values (:groupsId, :studentsId)", nativeQuery = true)
-   GroupEntity addStudentToGroup(UUID groupsId, UUID studentsId);
-
-    @Query(value = "delete from groups_students where groups.students.id = :studentsId and groups.id = :groupsId", nativeQuery = true)
-    UserEntity deleteStudentFromGroup(UUID groupsId, UUID studentsId);
-
+    @Query("delete from attendance where users.roles = student and users.id = :id")
+    UserEntity deleteStudentById(UUID attendance, UUID studentId);
  List<GroupEntity> searchGroupEntitiesByNameContainingIgnoreCase(String name, Pageable page);
 }

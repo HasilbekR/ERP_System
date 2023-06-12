@@ -50,7 +50,6 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-
     public JwtResponse login(LoginDto loginDto) {
 
         UserEntity userEntity = userRepository.findUserEntityByPhoneNumber(loginDto.getPhoneNumber()).orElseThrow(
@@ -66,7 +65,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public List<UserEntity>  getArchivedStudents(Principal principal) {
-        UserEntity userEntity = userRepository.findUserEntityByNumber(principal.getName()).orElseThrow(
+        UserEntity userEntity = userRepository.findUserEntityByPhoneNumber(principal.getName()).orElseThrow(
                 () -> new DataNotFoundException("User not found")
         );
         List<UserRole> roles = userEntity.getRoles();

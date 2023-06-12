@@ -3,7 +3,9 @@ import com.example.erp_system.Dto.request.UserRequestDto;
 import com.example.erp_system.entity.GroupEntity;
 import com.example.erp_system.entity.UserEntity;
 import com.example.erp_system.Dto.request.GroupCreateDto;
+import com.example.erp_system.entity.GroupEntity;
 import com.example.erp_system.entity.ModuleEntity;
+import com.example.erp_system.entity.UserEntity;
 import com.example.erp_system.exceptions.DataNotFoundException;
 import com.example.erp_system.exceptions.GroupNotFoundException;
 import com.example.erp_system.repository.GroupRepository;
@@ -15,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -67,13 +70,13 @@ public class GroupService  {
         Pageable pageable = PageRequest.of(page,size);
         return groupRepository.findAll(pageable).getContent();
     }
-    public GroupEntity addStudentToGroup(UUID groupId ,UUID newStudent){
+    public GroupEntity addStudentToGroup(UUID attendanceId ,UserRequestDto newStudent){
         GroupEntity group = modelMapper.map(newStudent,GroupEntity.class);
-        return groupRepository.addStudentToGroup(groupId, newStudent);
+        return groupRepository.addStudentToAttendance(attendanceId, newStudent);
     }
 
-    public UserEntity deleteStudentById(UUID groupId, UUID studentId){
-       return groupRepository.deleteStudentFromGroup(groupId, studentId);
+    public UserEntity deleteStudentById(UUID attendance, UUID studentId){
+       return groupRepository.deleteStudentById(attendance, studentId);
     }
 
     public List<GroupEntity> searchBook(String name, int page, int size) {
