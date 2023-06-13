@@ -16,6 +16,8 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     @Query(value = "select a from archive a order by a.createdTime asc ")
     List<UserEntity> archivedStudents();
 
-    Optional<UserEntity> findUserEntityByUsername(String username);
+    @Query("select u from users u where u.fullName = :fullName")
+    Optional<UserEntity> findUserEntityByUsername(String fullName);
+    Optional<UserEntity> findUserEntityById(UUID id);
 
 }

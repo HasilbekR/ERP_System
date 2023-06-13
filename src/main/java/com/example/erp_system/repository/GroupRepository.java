@@ -16,9 +16,10 @@ import java.util.UUID;
 @Repository
 public interface GroupRepository extends JpaRepository<GroupEntity , UUID>{
     GroupEntity findGroupEntityById(UUID id);
-  GroupEntity addStudentToAttendance(UUID attendanceId, UserRequestDto newStudent);
+    @Query(value = "insert into groups_students(groups_id, students_id) values(:groups_id,:students_id)", nativeQuery = true)
+    GroupEntity addStudentToGroup(UUID groups_id,UUID students_id);
 
-    @Query("delete from attendance where users.roles = student and users.id = :id")
-    UserEntity deleteStudentById(UUID attendance, UUID studentId);
+    @Query(value = "delete from groups_students where groups_id = ?1 and students_id = ?2", nativeQuery = true)
+    void deleteStudentById(UUID groupId, UUID studentId);
  List<GroupEntity> searchGroupEntitiesByNameContainingIgnoreCase(String name, Pageable page);
 }
