@@ -2,6 +2,7 @@ package com.example.erp_system.Controller;
 
 import com.example.erp_system.Dto.request.GroupCreateDto;
 import com.example.erp_system.entity.GroupEntity;
+import com.example.erp_system.entity.UserEntity;
 import com.example.erp_system.service.GroupService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,13 +25,13 @@ public class GroupController {
   public ResponseEntity<GroupEntity> addGroup(
          @RequestBody GroupCreateDto groupDto
          ){
+
       return ResponseEntity.ok(groupService.save(groupDto));
   }
 
 
   @DeleteMapping("/{groupId}/delete")
   @PreAuthorize("hasRole(ADMIN)")
-
   public ResponseEntity deleteGroup(
             @PathVariable UUID groupId
   ){
@@ -40,7 +41,7 @@ public class GroupController {
 
 
 
-    @PatchMapping("/{groupId}update")
+    @PatchMapping("/{groupId}/update")
     @PreAuthorize("hasRole(ADMIN)")
 
     public ResponseEntity<GroupEntity> updateGroup(
@@ -50,7 +51,7 @@ public class GroupController {
         return ResponseEntity.ok(groupService.update(groupCreateDto, groupId));
     }
 
-    @GetMapping("/{groupId}getGroup")
+    @GetMapping("/{groupId}/getGroup")
     @PreAuthorize("hasRole(ADMIN)")
 
     public ResponseEntity<GroupEntity> getGroup(
@@ -80,6 +81,23 @@ public class GroupController {
             @RequestParam String name
     ){
         return ResponseEntity.status(200).body(groupService.searchBook(name, page, size));
+    }
+
+    @DeleteMapping("/{groupId}/{studentId}/delete")
+    public ResponseEntity deleteStudentFromGroup(
+            @PathVariable UUID groupId,
+            @PathVariable UUID studentId
+            ){
+      groupService.deleteStudentById(groupId,studentId);
+      return ResponseEntity.status(202).build();
+    }
+
+    @PostMapping("/{groupId}/{studentId}/addStudent")
+    public ResponseEntity<GroupEntity> addStudentToGroup(
+            @PathVariable UUID groupId,
+            @PathVariable UUID studentId
+    ){
+      return ResponseEntity.ok(groupService.addStudentToGroup(groupId,studentId));
     }
 
 
