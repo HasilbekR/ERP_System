@@ -13,6 +13,7 @@ import com.example.erp_system.repository.user.UserRepository;
 import com.example.erp_system.service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -78,6 +79,7 @@ public class UserServiceImpl implements UserService{
         return null;
     }
 
+
     @Override
     public UserEntity getById(UUID id) {
         return userRepository.findUserEntityById(id).orElseThrow(
@@ -88,4 +90,6 @@ public class UserServiceImpl implements UserService{
     public List<UserEntity> getAll() {
         return userRepository.findAll();
     }
+
+
 }

@@ -13,8 +13,8 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class LessonService {
-   private final GroupRepository groupRepository;
 
+   private final GroupRepository groupRepository;
 
    public LessonEntity createLesson(UUID groupId) {
       LessonEntity lesson = LessonEntity.builder()

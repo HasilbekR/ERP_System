@@ -1,12 +1,11 @@
 package com.example.erp_system.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import lombok.*;
 
 import java.util.List;
-import java.util.Set;
+
 @Entity(name = "modules")
 @AllArgsConstructor
 @NoArgsConstructor

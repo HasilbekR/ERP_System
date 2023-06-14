@@ -19,6 +19,9 @@ public interface GroupRepository extends JpaRepository<GroupEntity , UUID>{
     @Query(value = "insert into groups_students(groups_id, students_id) values(:groups_id,:students_id)", nativeQuery = true)
     GroupEntity addStudentToGroup(UUID groups_id,UUID students_id);
 
+    @Query(value = "select s.students from groups s where s.id = :groupId")
+    List<UserEntity> getGroupStudent(UUID groupId);
+
     @Query(value = "delete from groups_students where groups_id = ?1 and students_id = ?2", nativeQuery = true)
     void deleteStudentById(UUID groupId, UUID studentId);
  List<GroupEntity> searchGroupEntitiesByNameContainingIgnoreCase(String name, Pageable page);
