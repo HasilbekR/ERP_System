@@ -17,7 +17,9 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RequestMapping("/auth/v1/user")
 public class UserController {
+
     private final UserService userService;
+
     @PutMapping("/archived-students")
     @PreAuthorize(value = "hasRole('ADMIN')")
     public ResponseEntity<List<UserEntity>> archivedStudents(
